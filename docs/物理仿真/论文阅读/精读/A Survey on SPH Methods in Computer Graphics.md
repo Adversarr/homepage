@@ -16,29 +16,20 @@ tags:
 
 #SPH​, #IPC​, #PaperNotes​, #PhysicalSimulation​, #Survey​
 
-
-
->
-> [SPH_Tutorial.pdf](SPH_Tutorial-20230213193233-gc447ox.pdf)
->
-
-
 摘要：第三部分将介绍SPH流体模拟中引入粘性、涡量和表面张力的主要方法。粘性力主要描述了流体动能的耗散，主要有显式和隐式求解两类方法。借鉴了有限差分的显式方法，能够保持守恒量，并有较高的计算效率，是粘性力计算的主流方法。在涡量和表面张力的研究上，主要可以从宏观或微观上入手。引入涡量有助于降低SPH格式的数值耗散现象，能够更好保持流体的漩涡运动。表面张力描述了液体分子之间的相互吸引力，有助于更真实的流体表面的形成。
 
 流体的空间离散的最基本方程为：
 
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P3-20230210103947-20230210103949-i7fw8j1.png)​
+​![](assets/sphcgf20230210103947-20230210103949-i7fw8j1.png)​
 
 在空间上的梯度，用SPH离散结果为：
 
-‍
+
+​![](assets/sphcgf20230210103435-20230210103437-t31s7an.png)​
 
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P3-20230210103435-20230210103437-t31s7an.png)​
-
-
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P3-20230210103651-20230210103653-569kb1l.png)​
+​![](assets/sphcgf20230210103651-20230210103653-569kb1l.png)​
 
 ## Materials
 
@@ -48,27 +39,27 @@ Definition and Derivation
 
 
 ​
-![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P12-20230209181405-20230209181406-1hsxwv9.png)​
+![](assets/sphcgf-P12-20230209181405-20230209181406-1hsxwv9.png)​
 
 Solver:
 
-1. [cgf2022A Survey on SPH Methods in Computer Graphicspdf.pdf - p12 - compute the Laplacian of the velocity field using an SPH formulation ](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-20230209151110-0nucvr0.pdf?p=12)
-2. [cgf2022A Survey on SPH Methods in Computer Graphicspdf.pdf - p12 - use a strain rate based formulation](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-20230209151110-0nucvr0.pdf?p=12)
+1. p12 - compute the Laplacian of the velocity field using an SPH formulation
+2. p12 - use a strain rate based formulation
 
 ### Explicit Viscosity
 
 对于SPH而言，标准的Laplacian公式为：
 
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P12-20230209181735-20230209181736-vc5i82d.png)​
+​![](assets/sphcgf-P12-20230209181735-20230209181736-vc5i82d.png)​
 
 缺点：$W$的二阶导数变号甚至不连续
 
-> [cgf2022A Survey on SPH Methods in Computer Graphicspdf.pdf - p12 - the second derivative of the kernel changes sign inside the kernel domain and can even be discontinuous (e.g., cubic spline kernel](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-20230209151110-0nucvr0.pdf?p=12)
+> sphcgf.pdf - p12 - the second derivative of the kernel changes sign inside the kernel domain and can even be discontinuous (e.g., cubic spline kernel
 
 解决方法：
 
-1. [cgf2022A Survey on SPH Methods in Computer Graphicspdf.pdf - p12 - compute the second derivative by taking two first SPH derivatives](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-20230209151110-0nucvr0.pdf?p=12)
+1. sphcgf.pdf - p12 - compute the second derivative by taking two first SPH derivatives
 
     > [Viscosity_Takahashi2015.cpp](https://github.com/InteractiveComputerGraphics/SPlisHSPlasH/blob/master/SPlisHSPlasH/Viscosity/Viscosity_Takahashi2015.cpp)
     >
@@ -85,7 +76,7 @@ Solver:
     > [Viscosity_Standard.cpp](https://github.com/InteractiveComputerGraphics/SPlisHSPlasH/blob/master/SPlisHSPlasH/Viscosity/Viscosity_Standard.cpp)
     >
 
-    ​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P12-20230210102112-20230210102113-0ysvbg5.png)​
+    ​![](assets/sphcgf-P12-20230210102112-20230210102113-0ysvbg5.png)​
 
     其中h项仅用于消除nan
 
@@ -97,17 +88,17 @@ Solver:
 
 原本是通过Stress Tensor来推导出的。
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P12-20230211185136-20230211185137-q490gmb.png)​
+​![](assets/sphcgf-P12-20230211185136-20230211185137-q490gmb.png)​
 
 #### Velocity Gradient decomposition
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P13-20230211185213-20230211185215-ywolzda.png)​
+​![](assets/sphcgf-P13-20230211185213-20230211185215-ywolzda.png)​
 
 #### Strain Rate Constraint Formulation
 
 Strain Rate 指的是 Strain$E$对时间$t$的导数：
 
-> ​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P12-20230209181405-20230209181406-1hsxwv9.png)​
+> ​![](assets/sphcgf-P12-20230209181405-20230209181406-1hsxwv9.png)​
 
 用参数$\gamma$来降低Strain Rate：
 
@@ -117,11 +108,11 @@ $$
 
 借助拉格朗日乘子法，转化为求解如下的线性系统：
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P13-20230213160916-20230213160918-bunoa7k.png)​
+​![](assets/sphcgf-P13-20230213160916-20230213160918-bunoa7k.png)​
 
 #### Implicit Laplacian Based Solver
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P13-20230213161105-20230213161122-nnyy27l.png)​
+​![](assets/sphcgf-P13-20230213161105-20230213161122-nnyy27l.png)​
 
 ## Vorticity
 
@@ -133,7 +124,7 @@ Turbulent details quickly get lost due to a coarse sampling of the velocity fiel
 Foreach Particle:
 
 
-​![](assets/cgf2022A Survey on SPH Methods in Computer Graphicspdf-P17-20230213194020-20230213194029-f7eoqzx.png)​
+​![](assets/sphcgf-P17-20230213194020-20230213194029-f7eoqzx.png)​
 
 产生的力为：
 
