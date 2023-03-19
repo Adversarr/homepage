@@ -1,6 +1,11 @@
 ---
 share: true
+tags:
+  - PDE
+  - Graduate
+  - Course
 ---
+
 
 #PDE, #Graduate, #Course 
 
