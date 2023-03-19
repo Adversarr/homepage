@@ -93,7 +93,7 @@ $$
 
 完全非线性
 
-![[相关基础课/研究生/偏微分方程/assets/Pasted image 20230318220417.png]]
+![[assets/Pasted image 20230318220417.png]]
 
 
 
