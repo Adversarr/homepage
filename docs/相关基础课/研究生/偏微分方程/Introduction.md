@@ -2,8 +2,9 @@
 share: true
 ---
 
+#PDE, #Graduate, #Course 
 
-# 基本概念
+# 01 基本概念
 
 方程 - 含**未知量**的等式
 
@@ -87,7 +88,7 @@ $$
 
 完全非线性
 
-![[assets/Pasted image 20230318220417.png]]
+![[相关基础课/研究生/偏微分方程/assets/Pasted image 20230318220417.png]]
 
 
 
