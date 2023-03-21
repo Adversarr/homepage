@@ -59,7 +59,7 @@ for c in constraints:
   x[select] += delta_x
 ```
 
-![[assets 1/Pasted image 20230315145831.png]]
+![[assets/Pasted image 20230315145831.png]]
 
 ### Example -- Mass spring
 
@@ -88,7 +88,7 @@ $$
 \Delta x_{1} = \frac{m_{2}}{m_{1}+m_{2}}C(\mathbf x_{1} ,\mathbf x_{2}) \mathbf n
 $$
 
-![[assets 1/Pasted image 20230315151806.png]]
+![[assets/Pasted image 20230315151806.png]]
 
 > Reference: A Survey on Position Based Dynamics, 2017 (EG 2017)
 
@@ -161,7 +161,7 @@ $$
   \Delta \mathbf{p}_{i}= \frac{1}{\rho_{0}}\sum\limits_{j} (\lambda_{i}+\lambda_{j}) \nabla W(\mathbf{p}_{i} - \mathbf{p}_{j}, h)
 $$
 
-![[assets 1/Pasted image 20230315195643.png]]
+![[assets/Pasted image 20230315195643.png]]
 
 ## Position based Surface Tension
 
@@ -169,7 +169,7 @@ $$
 
 ![[Drawing 2023-03-16 14.56.36.excalidraw]]
 
-![[assets 1/Pasted image 20230315195840.png]]
+![[assets/Pasted image 20230315195840.png]]
 
 ### Previous Work
 
@@ -177,13 +177,13 @@ Lagrangian Surface Tension 主要的方法有三类：
 
 第一类，不需要确定流体表面，通过计算**每一对**粒子间吸引力来模拟表面张力，能够保证动量守恒。缺点是依赖于粒子表示的精确程度，粒子少的地方精确性差，例如对于薄膜等不规则形状的流体（只有一层流体的情况），难以计算：
 
-![[assets 1/Pasted image 20230315200944.png]]
+![[assets/Pasted image 20230315200944.png]]
 
 第二类，基于表面张力最小化表面积的特性，通过求出流体表面**局部**的法向和曲率，在法向施加力来最小化流体表面积。缺点是其依赖于一个高鲁棒性、精确的表面检测算法，来近似局部的几何形状。
 
 第三类，建立表面网格，来计算更加精确的流体表面法向、曲率信息。优势在于，其能够进行精确的近似，并支持薄的、不规则的流体的模拟。缺点在于，该方法需要巨大的计算量用于生成精确的、高质量的网格，也不利于并行算法的实现。
 
-![[assets 1/Pasted image 20230315202845.png]]
+![[assets/Pasted image 20230315202845.png]]
 
 ### Contribution
 
@@ -193,7 +193,7 @@ Lagrangian Surface Tension 主要的方法有三类：
 
 解决方法：分为以下四步（在找出表面粒子之后）
 
-![[assets 1/Pasted image 20230315210144.png]]
+![[assets/Pasted image 20230315210144.png]]
 
 图中的 $\mathcal M_{i}$ 即为用于计算表面积的局部网格。
 
@@ -203,7 +203,7 @@ $$
   C_{i}^{A}(\mathbf{p}) = \sum\limits_{t\in T(i)}\frac{1}{2}\mathrm{Area}(\mathbf{p}_{t_{1}}, \mathbf{p}_{t_{2}},\mathbf{p}_{t_{3}})
 $$
 
-![[assets 1/Pasted image 20230315211444.png]]
+![[assets/Pasted image 20230315211444.png]]
 
 直接代入PBD公式计算得到更新位置即可。
 
@@ -213,7 +213,7 @@ $$
 C_{ij}^{D}(\mathbf{p}) = \min \{ 0, \| \mathbf{p}_{i}- \mathbf{p}_{j}\| - d_{0}\}
 $$
 
-![[assets 1/Pasted image 20230315212225.png]]
+![[assets/Pasted image 20230315212225.png]]
 
 其中的 $i, j$ 为同类型的粒子（表面、内部）。
 
@@ -221,7 +221,7 @@ $$
 
 #### 粒子分类为表面和内部
 
-![[assets 1/Pasted image 20230315212717.png]]
+![[assets/Pasted image 20230315212717.png]]
 
 计算上图所示的$R_{illum}$，大于一定阈值的粒子即为表面粒子。
 
@@ -237,7 +237,7 @@ $$
 
 其中的 $W(\mathbf{p}, h)$ 函数 图像如下：
 
-![[assets 1/Pasted image 20230315214204.png]]
+![[assets/Pasted image 20230315214204.png]]
 
 因此
 
@@ -252,7 +252,7 @@ $$
 
 ### Performance
 
-![[assets 1/Pasted image 20230315211719.png]]
+![[assets/Pasted image 20230315211719.png]]
 
 
 ### 优缺点分析
