@@ -37,7 +37,7 @@ Rest pose → Current pose.
 
 Find an optimal Translation and Rotation match the "→"
 
-​![image](assets/image-20230306130118-8058oi4.png)
+​![image](../../其他教程/assets/image-20230306130118-8058oi4.png)
 
 Force ⇒ *Attract* points to the "goal" positions.
 
