@@ -22,7 +22,7 @@ See [[PBD General]] for more details.
 -   思路：先做显式时间积分，然后强制让积分结果满足约束
 -   关键点：如何让结果满足约束？
 
-![[Drawing 2023-03-15 14.24.09.excalidraw]]
+![[../../物理仿真/也许你需要一些有序的整理/Position-based Dynamics/assets/Drawing 2023-03-15 14.24.09.excalidraw]]
 
 ### 约束满足算法
 
@@ -167,7 +167,7 @@ $$
 
 相同的思路，我们也是先给出Surface Tension对应的约束，然后用完全相同的方法来求位置更新。
 
-![[Drawing 2023-03-16 14.56.36.excalidraw]]
+![[assets/Drawing 2023-03-16 14.56.36.excalidraw]]
 
 ![[assets/Pasted image 20230315195840.png]]
 
